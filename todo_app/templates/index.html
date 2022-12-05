@@ -8,11 +8,33 @@
   </div>
 
   <h3>Add item</h3>
-  <form class="form-inline" action="/add" method="post">
-    <div class="form-group mx-sm-3 mb-2">
+  <form action="/add" method="post">
+    <div class="form-group mb-2">
       <input type="text" class="form-control" id="title" name="title" placeholder="Item title">
     </div>
+    <select name="listId" class="custom-select mb-2">
+      <option value="nothing">Status...</option>
+      {% for list in lists %}
+        <option value="{{list.id}}">{{list.name}}</option>
+      {% endfor %}
+    </select>
     <button type="submit" class="btn btn-primary mb-2">Add Item</button>
+  </form>
+
+  <h3>Update item</h3>
+  <form action="/update" method="post">
+    <select name="itemId" class="custom-select mb-2">
+      {% for item in items %}
+        <option value="{{item.id}}">{{item.name}}</option>
+      {% endfor %}
+    </select>
+    <select name="listId" class="custom-select mb-2">
+      <option value="nothing">Status...</option>
+      {% for list in lists %}
+        <option value="{{list.id}}">{{list.name}}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary mb-2">Update Item</button>
   </form>
 
   <div class="row">
@@ -22,7 +44,8 @@
         <!-- List the todo items here -->
         {% for item in items %}
           <li class="list-group-item">
-            {{item.title}}
+            {{item.name}}
+            <span class="badge badge-pill badge-primary ml-3">{{nameForList(item.status)}}</span>
           </li>
         {% endfor %}
       </ul>
