@@ -9,12 +9,12 @@ app.config.from_object(Config())
 BOARD_ID = os.getenv('BOARD_ID')
 lists = trello.make_request('GET', f'https://api.trello.com/1/boards/{BOARD_ID}/lists').json()
 
-def nameForList(id):
+def name_for_list(id):
     return next((list['name'] for list in lists if list['id'] == id), "Couldn't get status")
 
 @app.route('/')
 def index():
-    return render_template('index.html', items=trello_items.get_items(BOARD_ID), lists=lists, nameForList=nameForList)
+    return render_template('index.html', items=trello_items.get_items(BOARD_ID), lists=lists, name_for_list=name_for_list)
 
 @app.route('/add', methods=['POST'])
 def add_item():
