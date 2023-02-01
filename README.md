@@ -38,7 +38,7 @@ The `.env` file is used by flask to set environment variables when running `flas
 
 You'll need to create a Trello API key and token. Follow the steps [here](https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/) to do so. Once you've got those, you can add them to you `.env` file.
 
-You'll also need to create a trello board with at least 1 column and get it's board ID, here's a handy [Stack Overflow thread](https://stackoverflow.com/questions/26552278/trello-api-getting-boards-lists-cards-information) to help you get it quickly. Once that's done, add it to your `.env` as well.
+You'll also need to create a trello board with 3 columns named: `Things to do`, `Doing` and `Done`. You also need to get it's board ID, here's a handy [Stack Overflow thread](https://stackoverflow.com/questions/26552278/trello-api-getting-boards-lists-cards-information) to help you get it quickly. Once that's done, add it to your `.env` as well.
 
 ## Running the App
 
@@ -58,3 +58,7 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Running Tests
+
+Running the tests are straight forward, just type `pytest` in a terminal at the root of the project

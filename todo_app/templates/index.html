@@ -14,7 +14,7 @@
     </div>
     <select name="listId" class="custom-select mb-2">
       <option value="nothing">Status...</option>
-      {% for list in lists %}
+      {% for list in view_model.lists %}
         <option value="{{list.id}}">{{list.name}}</option>
       {% endfor %}
     </select>
@@ -24,13 +24,13 @@
   <h3>Update item</h3>
   <form action="/update" method="post">
     <select name="itemId" class="custom-select mb-2">
-      {% for item in items %}
+      {% for item in view_model.items %}
         <option value="{{item.id}}">{{item.name}}</option>
       {% endfor %}
     </select>
     <select name="listId" class="custom-select mb-2">
       <option value="nothing">Status...</option>
-      {% for list in lists %}
+      {% for list in view_model.lists %}
         <option value="{{list.id}}">{{list.name}}</option>
       {% endfor %}
     </select>
@@ -42,10 +42,10 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
         <!-- List the todo items here -->
-        {% for item in items %}
+        {% for item in view_model.items %}
           <li class="list-group-item">
             {{item.name}}
-            <span class="badge badge-pill badge-primary ml-3">{{name_for_list(item.status)}}</span>
+            <span class="badge badge-pill badge-primary ml-3">{{view_model.name_for_list(item.status)}}</span>
           </li>
         {% endfor %}
       </ul>
