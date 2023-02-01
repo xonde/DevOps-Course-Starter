@@ -1,22 +1,26 @@
 import requests
 import os
 
-TRELLO_API_KEY = os.getenv('TRELLO_API_KEY')
-TRELLO_API_TOKEN = os.getenv('TRELLO_API_TOKEN')
-
 headers = {
   "Accept": "application/json"
 }
 
-auth_query = {
-  'key': TRELLO_API_KEY,
-  'token': TRELLO_API_TOKEN
-}
+def load_params(query):
+  TRELLO_API_KEY = os.environ.get('TRELLO_API_KEY')
+  TRELLO_API_TOKEN = os.environ.get('TRELLO_API_TOKEN')
+
+  auth_query = {
+    'key': TRELLO_API_KEY,
+    'token': TRELLO_API_TOKEN
+  }
+
+  return {**query, **auth_query}
+
 
 def make_request(method, url, query={}):
     return requests.request(
         method,
         url,
         headers=headers,
-        params={**query, **auth_query}
+        params=load_params(query)
     )
