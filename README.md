@@ -69,3 +69,21 @@ Run `docker run --env-file .env.test todo-app:test`
 To run the tests directly on your machine:
 
 Run `poetry run pytest`
+
+## Docker Hub Todo app images
+
+https://hub.docker.com/repository/docker/taiwoolateju/todo-app/general
+
+## Manual deployment
+
+Make sure you're in the root directory
+
+Run `docker build --target production --tag todo-app:latest .`
+
+Run `docker tag todo-app:latest taiwoolateju/todo-app:latest`
+
+Run `docker push taiwoolateju/todo-app:latest`
+
+Find the webhook URL for the Azure web app. This should be located in the deployment center in Azure portal for the `taiwo-todo-app`
+
+Run `curl -dH -X POST <WEBHOOK_URL>` _Where <WEBHOOK_URL>_ is the Webhook URL in Azure portal
