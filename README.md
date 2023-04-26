@@ -60,5 +60,12 @@ You should see output similar to the following:
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
 ## Running Tests
+To run the tests in Docker:
 
-Running the tests are straight forward, just type `pytest` in a terminal at the root of the project
+Run `docker build --target test --tag todo-app:test`
+
+Run `docker run --env-file .env.test todo-app:test`
+
+To run the tests directly on your machine:
+
+Run `poetry run pytest`

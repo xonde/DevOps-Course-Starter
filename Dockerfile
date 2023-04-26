@@ -19,15 +19,16 @@ COPY todo_app/ /exercise_five/todo_app
 EXPOSE 5000
 
 # Development
-
 FROM base as development
 ENTRYPOINT poetry run flask run --host 0.0.0.0
 
 # Production
-
 FROM base as production
 ENTRYPOINT poetry run gunicorn --bind 0.0.0.0 "todo_app.app:create_app()"
 
+# Test
+FROM base as test
+ENTRYPOINT poetry run pytest
 
 # ENTRYPOINT [ "tail", "-f", "/dev/null" ]
 # Run Dev with:
