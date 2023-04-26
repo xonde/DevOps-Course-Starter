@@ -41,3 +41,11 @@ jobs:
           context: .
           push: true
           tags: taiwoolateju/todo-app:latest
+
+  deploy:
+    needs: Publish
+    name: Deploy Azure Webapp
+    runs-on: ubuntu-latest
+    steps:
+    - name: Call Azure WebApp Webhook
+      run: curl -dH -X POST ${{ secrets.AZURE_WEBHOOK }}
